@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701E4FEB1DDBBB470090C0B0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E4FEA1DDBBB470090C0B0 /* Photo.swift */; };
 		70CCDE741DDBB8DB006503F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE731DDBB8DB006503F7 /* AppDelegate.swift */; };
 		70CCDE761DDBB8DB006503F7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE751DDBB8DB006503F7 /* FirstViewController.swift */; };
 		70CCDE781DDBB8DB006503F7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE771DDBB8DB006503F7 /* SecondViewController.swift */; };
@@ -14,6 +15,8 @@
 		70CCDE7D1DDBB8DB006503F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70CCDE7C1DDBB8DB006503F7 /* Assets.xcassets */; };
 		70CCDE801DDBB8DB006503F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70CCDE7E1DDBB8DB006503F7 /* LaunchScreen.storyboard */; };
 		70CCDE8B1DDBB8DB006503F7 /* instalexiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE8A1DDBB8DB006503F7 /* instalexiaTests.swift */; };
+		70CCDE961DDBB9A1006503F7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 70CCDE951DDBB9A1006503F7 /* Podfile */; };
+		EDF14BFBA63D200A245E71A6 /* Pods_instalexia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA507B6A5A99C4788F9ADFE /* Pods_instalexia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EA507B6A5A99C4788F9ADFE /* Pods_instalexia.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_instalexia.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29290FCB304F5A1030C9ED8B /* Pods-instalexia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instalexia.release.xcconfig"; path = "Pods/Target Support Files/Pods-instalexia/Pods-instalexia.release.xcconfig"; sourceTree = "<group>"; };
+		701E4FEA1DDBBB470090C0B0 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		70CCDE701DDBB8DB006503F7 /* instalexia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instalexia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CCDE731DDBB8DB006503F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70CCDE751DDBB8DB006503F7 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +44,8 @@
 		70CCDE861DDBB8DB006503F7 /* instalexiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = instalexiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CCDE8A1DDBB8DB006503F7 /* instalexiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = instalexiaTests.swift; sourceTree = "<group>"; };
 		70CCDE8C1DDBB8DB006503F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70CCDE951DDBB9A1006503F7 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9275774FDD193A204DB36D22 /* Pods-instalexia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-instalexia.debug.xcconfig"; path = "Pods/Target Support Files/Pods-instalexia/Pods-instalexia.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF14BFBA63D200A245E71A6 /* Pods_instalexia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +67,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0EB9A6B27D69287D207E2D6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9275774FDD193A204DB36D22 /* Pods-instalexia.debug.xcconfig */,
+				29290FCB304F5A1030C9ED8B /* Pods-instalexia.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		59DD459E0F3AF5346762E747 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0EA507B6A5A99C4788F9ADFE /* Pods_instalexia.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		70CCDE671DDBB8DA006503F7 = {
 			isa = PBXGroup;
 			children = (
+				70CCDE951DDBB9A1006503F7 /* Podfile */,
 				70CCDE721DDBB8DB006503F7 /* instalexia */,
 				70CCDE891DDBB8DB006503F7 /* instalexiaTests */,
 				70CCDE711DDBB8DB006503F7 /* Products */,
+				0EB9A6B27D69287D207E2D6D /* Pods */,
+				59DD459E0F3AF5346762E747 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +115,7 @@
 				70CCDE7C1DDBB8DB006503F7 /* Assets.xcassets */,
 				70CCDE7E1DDBB8DB006503F7 /* LaunchScreen.storyboard */,
 				70CCDE811DDBB8DB006503F7 /* Info.plist */,
+				701E4FEA1DDBBB470090C0B0 /* Photo.swift */,
 			);
 			path = instalexia;
 			sourceTree = "<group>";
@@ -106,9 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70CCDE8F1DDBB8DB006503F7 /* Build configuration list for PBXNativeTarget "instalexia" */;
 			buildPhases = (
+				9B4D5CF7740833750146C8D1 /* [CP] Check Pods Manifest.lock */,
 				70CCDE6C1DDBB8DA006503F7 /* Sources */,
 				70CCDE6D1DDBB8DA006503F7 /* Frameworks */,
 				70CCDE6E1DDBB8DA006503F7 /* Resources */,
+				E8118369D15DB052042CF42A /* [CP] Embed Pods Frameworks */,
+				41F73B6FC812B0A032BFD7FF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,6 +219,7 @@
 			files = (
 				70CCDE801DDBB8DB006503F7 /* LaunchScreen.storyboard in Resources */,
 				70CCDE7D1DDBB8DB006503F7 /* Assets.xcassets in Resources */,
+				70CCDE961DDBB9A1006503F7 /* Podfile in Resources */,
 				70CCDE7B1DDBB8DB006503F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,11 +233,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		41F73B6FC812B0A032BFD7FF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-instalexia/Pods-instalexia-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B4D5CF7740833750146C8D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E8118369D15DB052042CF42A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-instalexia/Pods-instalexia-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		70CCDE6C1DDBB8DA006503F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				701E4FEB1DDBBB470090C0B0 /* Photo.swift in Sources */,
 				70CCDE781DDBB8DB006503F7 /* SecondViewController.swift in Sources */,
 				70CCDE741DDBB8DB006503F7 /* AppDelegate.swift in Sources */,
 				70CCDE761DDBB8DB006503F7 /* FirstViewController.swift in Sources */,
@@ -343,6 +426,7 @@
 		};
 		70CCDE901DDBB8DB006503F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9275774FDD193A204DB36D22 /* Pods-instalexia.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4326L6N74Q;
@@ -356,6 +440,7 @@
 		};
 		70CCDE911DDBB8DB006503F7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 29290FCB304F5A1030C9ED8B /* Pods-instalexia.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4326L6N74Q;
@@ -416,6 +501,7 @@
 				70CCDE911DDBB8DB006503F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70CCDE921DDBB8DB006503F7 /* Build configuration list for PBXNativeTarget "instalexiaTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +510,7 @@
 				70CCDE941DDBB8DB006503F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

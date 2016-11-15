@@ -1,0 +1,6 @@
+framework module Pods_instalexia {
+  umbrella header "Pods-instalexia-umbrella.h"
+
+  export *
+  module * { export * }
+}
