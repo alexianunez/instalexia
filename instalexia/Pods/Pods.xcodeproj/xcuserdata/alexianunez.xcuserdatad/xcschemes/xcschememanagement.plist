@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KeychainSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Kingfisher.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,7 +47,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F6A70701FFE3D864A6D581AA3EF56F5</key>
+		<key>4C698C648EE4D43C6B8BE0BE1FE91737</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,17 +57,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8EB7756F5D18663F4D63FE42F604519F</key>
+		<key>87E2CE74FB51895B8A9E9FDAEA6F5A83</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9A87972CA07BF8AC05A4E2AC32D62A63</key>
+		<key>8AA4476A845B8D6AAF6AB6B6D14AF597</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C117E7341ABA448F81947355F126E1D</key>
+		<key>907D007028DD0D33BCD90DC1BB8273B0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4E763DFA77C6D62F5B444F606F89C1B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

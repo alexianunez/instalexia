@@ -10,6 +10,8 @@ import Foundation
 
 struct Constants {
     
-    
+    enum Segues: String {
+        case FromLoginToHome = "showHomeSegue"
+    }
     
 }

@@ -10,75 +10,41 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class LoginViewController: UIViewController {
-    
-    @IBOutlet weak var userNameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var errorLabel: UILabel!
+final class LoginViewController: ViewController {
     
     let viewModel = LoginViewModel()
-    let disposeBag = DisposeBag()
+    @IBOutlet weak var loginWebView: UIWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupBindings()
+        self.loadLogin()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func loginButtonPressed() {
-        guard
-            let userName = self.userNameTextField.text,
-            let password = self.passwordTextField.text
-            else {
-            return
-        }
-        viewModel.validateInput(userName: userName, password: password)
-        .subscribe { success in
-            guard success.element == true else { return }
-            self.doLogin(userName: userName, password: password)
+    private func setupBindings() {
+        // Binding to this flag to detect when user is logged in
+        viewModel.userHasLoggedIn.asObservable()
+        .subscribe {
+            guard $0.element == true else { return }
+            // Once the user is logged in, we send the user to the home screen
+            self.performSegue(withIdentifier: Constants.Segues.FromLoginToHome.rawValue, sender: self)
         }.addDisposableTo(disposeBag)
     }
     
-    func setupBindings() {
-        viewModel.isLoggingIn.asObservable()
-        .subscribe(onNext: { (loggingIn) in
-            self.enableUI(enable: !loggingIn)
-        }, onError: { error in
-            self.errorLabel.text = error.localizedDescription
-        }, onCompleted: {
-            // non-op
-        }, onDisposed: {
-            // non-op
-        }).addDisposableTo(disposeBag)
-    
+    private func loadLogin() {
+        guard let loginUrl = URL(string: viewModel.loginURL) else { return }
+        let loginRequest = URLRequest(url: loginUrl)
+        self.loginWebView.loadRequest(loginRequest)
     }
-    
-    private func doLogin(userName: String, password: String) {
-        
-    }
-    
-    private func enableUI(enable: Bool) {
-        self.userNameTextField.isUserInteractionEnabled = enable
-        self.passwordTextField.isUserInteractionEnabled = enable
-        self.loginButton.isUserInteractionEnabled = enable
-        self.userNameTextField.alpha = enable ? 1.0: 0.5
-        self.passwordTextField.alpha = enable ? 1.0: 0.5
-        self.loginButton.alpha = enable ? 1.0: 0.5
-    }
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension LoginViewController: UIWebViewDelegate {
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        return !viewModel.isAuthTokenPresentInUrl(URL: request.url)
     }
-    */
-
 }

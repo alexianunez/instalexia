@@ -10,18 +10,45 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class LoginViewModel {
+final class LoginViewModel: ViewModel {
     
-    let isLoggingIn: Variable<Bool> = Variable(false)
-    let currentError: Variable<String> = Variable("")
+    let loginURL = APIConstants.Endpoints.Login.fullURL
+    let accessToken: Variable<String> = Variable("")
+    let userHasLoggedIn: Variable<Bool> = Variable(false)
     
-    func validateInput(userName: String, password: String) -> Observable<Bool> {
-        guard !userName.isEmpty && !password.isEmpty else { return Observable.just(false) }
-        self.isLoggingIn.value = true
-        return Observable.just(true)
+    override init() {
+        super.init()
+        setupBindings()
     }
     
-    func login(userName: String, password: String) {
-        
+    private func setupBindings() {
+        // Binding to set auth token on API if set
+        accessToken.asObservable()
+        .subscribe { event in
+            // Check first if token is valid, non-zero value
+            guard
+                let token = event.element,
+                token.characters.count > 0
+            else { return }
+            API.setAuthToken(token: token)
+            // Set this value, so any subscribers can take action
+            self.userHasLoggedIn.value = true
+        }.addDisposableTo(disposeBag)
+    }
+    
+    func isAuthTokenPresentInUrl(URL: URL?) -> Bool {
+        // No need to go further if access token isn't present
+        let authTokenFieldName: String = "access_token="
+        guard
+            let unwrappedUrl = URL,
+            let authToken = unwrappedUrl.fragment,
+            authToken.contains(authTokenFieldName)
+            else {
+                return false
+        }
+        // Extract access token from fragment
+        let token = authToken.replacingOccurrences(of: authTokenFieldName, with: "")
+        accessToken.value = token
+        return true
     }
 }

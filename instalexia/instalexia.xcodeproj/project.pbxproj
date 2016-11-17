@@ -13,6 +13,8 @@
 		701E4FF11DDBC43B0090C0B0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E4FF01DDBC43B0090C0B0 /* User.swift */; };
 		701E4FF31DDBCCD70090C0B0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E4FF21DDBCCD70090C0B0 /* LoginViewController.swift */; };
 		701E4FF61DDBD0710090C0B0 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701E4FF51DDBD0710090C0B0 /* LoginViewModel.swift */; };
+		70A2AE1A1DDD144300281495 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A2AE191DDD144300281495 /* ViewController.swift */; };
+		70A2AE1C1DDD1E2C00281495 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A2AE1B1DDD1E2C00281495 /* ViewModel.swift */; };
 		70CCDE741DDBB8DB006503F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE731DDBB8DB006503F7 /* AppDelegate.swift */; };
 		70CCDE761DDBB8DB006503F7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE751DDBB8DB006503F7 /* FirstViewController.swift */; };
 		70CCDE781DDBB8DB006503F7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE771DDBB8DB006503F7 /* SecondViewController.swift */; };
@@ -43,6 +45,8 @@
 		701E4FF01DDBC43B0090C0B0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		701E4FF21DDBCCD70090C0B0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		701E4FF51DDBD0710090C0B0 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		70A2AE191DDD144300281495 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		70A2AE1B1DDD1E2C00281495 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		70CCDE701DDBB8DB006503F7 /* instalexia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instalexia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CCDE731DDBB8DB006503F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70CCDE751DDBB8DB006503F7 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -99,8 +103,18 @@
 			children = (
 				701E4FF21DDBCCD70090C0B0 /* LoginViewController.swift */,
 				701E4FF51DDBD0710090C0B0 /* LoginViewModel.swift */,
+				70A2AE191DDD144300281495 /* ViewController.swift */,
+				70A2AE1B1DDD1E2C00281495 /* ViewModel.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		70A2AE181DDCF7DD00281495 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				701E4FF01DDBC43B0090C0B0 /* User.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		70CCDE671DDBB8DA006503F7 = {
@@ -127,6 +141,7 @@
 		70CCDE721DDBB8DB006503F7 /* instalexia */ = {
 			isa = PBXGroup;
 			children = (
+				70A2AE181DDCF7DD00281495 /* Models */,
 				701E4FF41DDBCCE90090C0B0 /* Views */,
 				70CCDE731DDBB8DB006503F7 /* AppDelegate.swift */,
 				70CCDE751DDBB8DB006503F7 /* FirstViewController.swift */,
@@ -138,7 +153,6 @@
 				701E4FEA1DDBBB470090C0B0 /* Photo.swift */,
 				701E4FEC1DDBBDF00090C0B0 /* Constants.swift */,
 				701E4FEE1DDBC1FE0090C0B0 /* API.swift */,
-				701E4FF01DDBC43B0090C0B0 /* User.swift */,
 			);
 			path = instalexia;
 			sourceTree = "<group>";
@@ -309,8 +323,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70A2AE1A1DDD144300281495 /* ViewController.swift in Sources */,
 				701E4FED1DDBBDF00090C0B0 /* Constants.swift in Sources */,
 				701E4FEB1DDBBB470090C0B0 /* Photo.swift in Sources */,
+				70A2AE1C1DDD1E2C00281495 /* ViewModel.swift in Sources */,
 				70CCDE781DDBB8DB006503F7 /* SecondViewController.swift in Sources */,
 				70CCDE741DDBB8DB006503F7 /* AppDelegate.swift in Sources */,
 				701E4FF31DDBCCD70090C0B0 /* LoginViewController.swift in Sources */,
