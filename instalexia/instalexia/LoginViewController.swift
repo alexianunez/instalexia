@@ -31,7 +31,7 @@ final class LoginViewController: ViewController {
         .subscribe {
             guard $0.element == true else { return }
             // Once the user is logged in, we send the user to the home screen
-            self.performSegue(withIdentifier: Constants.Segues.FromLoginToHome.rawValue, sender: self)
+            self.showHome()
         }.addDisposableTo(disposeBag)
     }
     
@@ -40,6 +40,13 @@ final class LoginViewController: ViewController {
         let loginRequest = URLRequest(url: loginUrl)
         self.loginWebView.loadRequest(loginRequest)
     }
+    
+    private func showHome() {
+        guard
+            let homeVC = self.storyboard?.instantiateViewController(withIdentifier: Constants.ViewControllers.HomeViewController.rawValue),
+            let window = self.view.window else { return }
+        window.rootViewController = homeVC        
+    }    
 }
 
 extension LoginViewController: UIWebViewDelegate {

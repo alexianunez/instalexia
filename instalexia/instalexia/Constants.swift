@@ -10,8 +10,8 @@ import Foundation
 
 struct Constants {
     
-    enum Segues: String {
-        case FromLoginToHome = "showHomeSegue"
+    enum ViewControllers: String {
+        case HomeViewController = "HomeViewController"
     }
     
 }
