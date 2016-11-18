@@ -7,4 +7,5 @@ pod 'RxCocoa', '~> 3.0'
 pod 'RxAlamofire', '~> 3.0'
 pod 'Kingfisher', '~> 3.2'
 pod 'KeychainSwift', '~> 7.0'
+pod 'Alamofire'
 end

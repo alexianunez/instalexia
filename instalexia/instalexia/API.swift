@@ -43,10 +43,10 @@ enum APIConstants {
 
 final class API {
     
-    // Public
+    // Public variables
     static var needsLogin: Variable<Bool> = Variable(false)
     
-    // Private
+    // Private variables
     static private let keychain: KeychainSwift = KeychainSwift(keyPrefix: "com.instalexia")
     static private var authToken: String?
     
@@ -61,4 +61,7 @@ final class API {
         API.authToken = token
         API.keychain.set(token, forKey: "authToken")
     }
+    
+    
+    
 }
