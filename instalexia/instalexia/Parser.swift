@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+struct Parser {
+    
+    static func parseUser(data: JSONSerialization) {
+        
+    }
+    
+}
