@@ -11,7 +11,13 @@ import RxCocoa
 import RxSwift
 import RxAlamofire
 import KeychainSwift
+import Alamofire
 
+enum APIError: Error {
+    case UnknownError
+    case MalformedData
+    case RequestTimedOut
+}
 
 enum APIConstants {
     
@@ -21,17 +27,20 @@ enum APIConstants {
     static let callbackURL: String = "https://awomannamedalexia.com"
     
     enum Endpoints {
-        case Users
+        case UserInfo
+        case Recent
         case Location(lat: Float, long: Float)
         case Tags(searchTerm: String)
         case Login
         
         var fullURL: String {
             switch self {
-            case .Users:
-                return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/users/self/media/recent/"
+            case .UserInfo:
+                return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/users/self"
+            case .Recent:
+                return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/users/self/media/recent"
             case .Location(let lat, let long):
-                return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/media/search?lat=\(lat)&lng=\(long)&access_token="
+                return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/media/search?lat=\(lat)&lng=\(long)"
             case .Tags(let searchTerm):
                 return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/users/self/media/recent/\(searchTerm)"
             case .Login:
@@ -49,6 +58,7 @@ final class API {
     // Private variables
     static private let keychain: KeychainSwift = KeychainSwift(keyPrefix: "com.instalexia")
     static private var authToken: String?
+    static private let disposeBag = DisposeBag()
     
     static func hasAuthToken() -> Bool {
         return authToken != nil ? true : false
@@ -62,6 +72,33 @@ final class API {
         API.keychain.set(token, forKey: "authToken")
     }
     
+    // No need to return anything, since the values are all subscribable
+    static func getUserInfo() {
+        API.callAPI(endPoint: .UserInfo)
+        .asObservable()
+        .subscribe { event in
+            guard let jsonData = event.element as? [String: AnyObject] else { return }
+            User.createUserWithJSON(jsonData: jsonData)
+        }
+        .addDisposableTo(disposeBag)
+    }
     
-    
+    static func getRecentPhotos() {
+        API.callAPI(endPoint: .Recent)
+        .asObservable()
+        .subscribe { event in
+            print(event)
+        }
+        .addDisposableTo(disposeBag)
+    }
+
+    static private func callAPI(endPoint: APIConstants.Endpoints) -> Observable<Any> {
+        guard
+            let accessToken = API.authToken,
+            let url = URL(string: "\(endPoint.fullURL)?access_token=\(accessToken)")
+        else { return Observable.error(APIError.UnknownError) }
+        
+        return URLSession.shared.rx.json(url: url)
+        .observeOn(MainScheduler.instance)
+    }
 }

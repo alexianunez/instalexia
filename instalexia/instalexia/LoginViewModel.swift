@@ -31,6 +31,8 @@ final class LoginViewModel: ViewModel {
                 token.characters.count > 0
             else { return }
             API.setAuthToken(token: token)
+            // Then, get the user's info
+            API.getUserInfo()
             // Set this value, so any subscribers can take action
             self.userHasLoggedIn.value = true
         }.addDisposableTo(disposeBag)
