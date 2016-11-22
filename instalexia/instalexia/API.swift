@@ -87,7 +87,14 @@ final class API {
         API.callAPI(endPoint: .Recent)
         .asObservable()
         .subscribe { event in
-            print(event)
+            switch event {
+            case .next(let element):
+                guard let jsonData = element as? [String: AnyObject] else { return }
+                Parser.parsePhotos(jsonData: jsonData)
+                break
+            default:
+                break
+            }
         }
         .addDisposableTo(disposeBag)
     }
