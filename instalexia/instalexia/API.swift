@@ -50,13 +50,16 @@ enum APIConstants {
     }
 }
 
+let authTokenKey = "authToken"
+let prefix = "com.instalexia"
+
 final class API {
     
     // Public variables
     static var needsLogin: Variable<Bool> = Variable(false)
     
     // Private variables
-    static private let keychain: KeychainSwift = KeychainSwift(keyPrefix: "com.instalexia")
+    static private let keychain: KeychainSwift = KeychainSwift(keyPrefix: prefix)
     static private var authToken: String?
     static private let disposeBag = DisposeBag()
     
@@ -65,11 +68,11 @@ final class API {
     }
 
     static func startUp() {
-        API.authToken = API.keychain.get("authToken")
+        API.authToken = API.keychain.get(authTokenKey)
     }
     static func setAuthToken(token: String) {
         API.authToken = token
-        API.keychain.set(token, forKey: "authToken")
+        API.keychain.set(token, forKey: authTokenKey)
     }
     
     // No need to return anything, since the values are all subscribable
@@ -83,22 +86,19 @@ final class API {
         .addDisposableTo(disposeBag)
     }
     
+    
     static func getRecentPhotos() {
         API.callAPI(endPoint: .Recent)
         .asObservable()
-        .subscribe { event in
-            switch event {
-            case .next(let element):
-                guard let jsonData = element as? [String: AnyObject] else { return }
-                Parser.parsePhotos(jsonData: jsonData)
-                break
-            default:
-                break
-            }
-        }
-        .addDisposableTo(disposeBag)
+            .subscribe { event in
+                guard
+                    let jsonData = event.element as? [String: AnyObject],
+                    let photos = Parser.parsePhotos(jsonData: jsonData)
+                else { return }
+                Photos.recentPhotos.value = photos
+        }.addDisposableTo(disposeBag)
     }
-
+    
     static private func callAPI(endPoint: APIConstants.Endpoints) -> Observable<Any> {
         guard
             let accessToken = API.authToken,
@@ -108,4 +108,6 @@ final class API {
         return URLSession.shared.rx.json(url: url)
         .observeOn(MainScheduler.instance)
     }
+    
+    
 }

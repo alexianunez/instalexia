@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 
 enum PhotoDataKeys: String {
 
@@ -50,6 +52,16 @@ struct Photo {
             {
                 self.thumbnailUrl = thumbnailInfo["url"] as? String ?? ""
         }
+    }
+    
+}
+
+struct Photos {
+    
+    static var recentPhotos: Variable<[Photo]> = Variable([])
+    
+    static func getRecentPhotos() {
+        API.getRecentPhotos()
     }
     
 }

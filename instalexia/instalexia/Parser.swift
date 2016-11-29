@@ -10,18 +10,27 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+enum ParserError: Error {
+    case MalformedData
+}
 
 struct Parser {
     
-    static func parsePhotos(jsonData: [String: AnyObject]) {
-        guard let data = jsonData["data"] as? [AnyObject] else { return }
+    static func parsePhotos(jsonData: [String: AnyObject]) -> [Photo]?
+    {
+        guard let data = jsonData["data"] as? [AnyObject]
+            else { return nil }
+        
+        var photos: [Photo] = []
         for item in data {
             if let photoDict = item as? [String: AnyObject] {
                 let photo = Photo(dict: photoDict)
-                print(photo.text)
-                print(photo.likes)
-                print(photo.thumbnailUrl)
+                photos.append(photo)
             }
         }
+        return photos
     }
+    
+    
+    
 }

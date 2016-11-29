@@ -28,7 +28,6 @@ struct User {
     static var profilePictureUrl: Variable<String> = Variable("")
     static var bio: Variable<String> = Variable("")
     static var website: Variable<String> = Variable("")
-    static var recentPhotos: Variable<[String]> = Variable([])
     
     static func createUserWithJSON(jsonData: [String: AnyObject]) {
         guard
@@ -43,9 +42,5 @@ struct User {
         User.bio.value = data[UserDataKeys.Bio.rawValue] as? String ?? ""
         User.profilePictureUrl.value = data[UserDataKeys.ProfilePictureURL.rawValue] as? String ?? ""
         User.website.value = data[UserDataKeys.Website.rawValue] as? String ?? ""
-    }
-    
-    func getLatestPhotos() {
-        API.getRecentPhotos()
     }
 }

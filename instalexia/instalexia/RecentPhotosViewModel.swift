@@ -14,23 +14,27 @@ import RxAlamofire
 
 final class RecentPhotosViewModel: ViewModel {
     
+    var recentPhotos: Variable<[Photo]> = Variable([])
+    
     override init() {
+        
         super.init()
-        self.setupBindings()
+        setupBindings()
+        Photos.getRecentPhotos()
     }
     
     private func setupBindings() {
         
-        User.id.asObservable()
-            .subscribe {event in
-                guard let id = event.element, id > 0 else { return }
-                API.getRecentPhotos()
-        }.addDisposableTo(disposeBag)
-        
-        User.recentPhotos.asObservable()
-            .subscribe { (nextEvent) in
-                print(nextEvent)
+        Photos.recentPhotos
+        .asObservable()
+            .subscribe {
+                guard let photos = $0.element else { return }
+                print("photos: \(photos.count)")
+                self.recentPhotos.value = photos
         }.addDisposableTo(disposeBag)
         
     }
+    
+    
+    
 }
