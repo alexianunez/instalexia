@@ -19,6 +19,8 @@
 		70A2AE1E1DDD3F4100281495 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A2AE1D1DDD3F4100281495 /* HomeViewController.swift */; };
 		70A2AE201DDF9C0300281495 /* RecentPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A2AE1F1DDF9C0300281495 /* RecentPhotosViewController.swift */; };
 		70BF44EF1DE38E11007007A7 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BF44EE1DE38E11007007A7 /* Parser.swift */; };
+		70BF44FA1DEE5973007007A7 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BF44F81DEE5973007007A7 /* PhotoCollectionViewCell.swift */; };
+		70BF44FD1DEE6483007007A7 /* PhotoCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BF44FC1DEE6483007007A7 /* PhotoCollectionViewCellModel.swift */; };
 		70CCDE741DDBB8DB006503F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE731DDBB8DB006503F7 /* AppDelegate.swift */; };
 		70CCDE781DDBB8DB006503F7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CCDE771DDBB8DB006503F7 /* SecondViewController.swift */; };
 		70CCDE7B1DDBB8DB006503F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70CCDE791DDBB8DB006503F7 /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		70A2AE1D1DDD3F4100281495 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		70A2AE1F1DDF9C0300281495 /* RecentPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentPhotosViewController.swift; sourceTree = "<group>"; };
 		70BF44EE1DE38E11007007A7 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		70BF44F81DEE5973007007A7 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		70BF44FC1DEE6483007007A7 /* PhotoCollectionViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCellModel.swift; sourceTree = "<group>"; };
 		70CCDE701DDBB8DB006503F7 /* instalexia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = instalexia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70CCDE731DDBB8DB006503F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70CCDE771DDBB8DB006503F7 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 				70A2AE191DDD144300281495 /* ViewController.swift */,
 				70A2AE1D1DDD3F4100281495 /* HomeViewController.swift */,
 				70A2AE1F1DDF9C0300281495 /* RecentPhotosViewController.swift */,
+				70BF44F81DEE5973007007A7 /* PhotoCollectionViewCell.swift */,
+				70BF44FC1DEE6483007007A7 /* PhotoCollectionViewCellModel.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -351,6 +357,8 @@
 				701E4FEF1DDBC1FE0090C0B0 /* API.swift in Sources */,
 				70BF44EF1DE38E11007007A7 /* Parser.swift in Sources */,
 				701E4FF11DDBC43B0090C0B0 /* User.swift in Sources */,
+				70BF44FD1DEE6483007007A7 /* PhotoCollectionViewCellModel.swift in Sources */,
+				70BF44FA1DEE5973007007A7 /* PhotoCollectionViewCell.swift in Sources */,
 				701E4FF61DDBD0710090C0B0 /* LoginViewModel.swift in Sources */,
 				70A2AE201DDF9C0300281495 /* RecentPhotosViewController.swift in Sources */,
 				70A2AE1E1DDD3F4100281495 /* HomeViewController.swift in Sources */,

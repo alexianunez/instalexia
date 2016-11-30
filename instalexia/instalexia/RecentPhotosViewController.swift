@@ -28,25 +28,31 @@ final class RecentPhotosViewController: ViewController, UICollectionViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    func setupBindings() {
+    private func setupBindings() {
         
         viewModel.recentPhotos
         .asObservable()
         .bindTo(photosCollectionView.rx.items(cellIdentifier: "PhotoCell")) { _, photo, cell in
-            self.configureCell(cell: cell, photoUrl: photo.thumbnailUrl)
             
-        }
-        .addDisposableTo(disposeBag)
+            guard let photoCell = cell as? PhotoCollectionViewCell else { return }
+            photoCell.photo = photo
+            
+            let button = UIButton(type: .system)
+            button.frame = cell.bounds
+            cell.contentView.addSubview(button)
+            button.rx.tap
+            .subscribe(onNext: {[unowned self] in
+                self.setPhotoLikeStatus(photo: photo)
+            }).addDisposableTo(self.disposeBag)
+            
+        }.addDisposableTo(disposeBag)
+        
     }
     
-    private func configureCell(cell: UICollectionViewCell, photoUrl: String) {
-        
-        let imageView = UIImageView(frame: cell.bounds)
-        let url = URL(string: photoUrl)
-        imageView.kf.setImage(with: url)
-        cell.contentView.addSubview(imageView)
-        
+    func setPhotoLikeStatus(photo: Photo) {
+        print(photo.text)
     }
+    
     
     //MARK: - Layout
     
@@ -59,5 +65,4 @@ final class RecentPhotosViewController: ViewController, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }
-
 }
