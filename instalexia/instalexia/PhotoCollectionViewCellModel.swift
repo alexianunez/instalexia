@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+
+class PhotoCollectionViewCellModel: ViewModel {
+    
+    var photo: Variable<Photo>? = nil
+    
+    
+}
