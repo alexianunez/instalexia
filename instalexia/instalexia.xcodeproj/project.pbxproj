@@ -107,6 +107,7 @@
 		701E4FF41DDBCCE90090C0B0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				70CCDE791DDBB8DB006503F7 /* Main.storyboard */,
 				701E4FF21DDBCCD70090C0B0 /* LoginViewController.swift */,
 				70A2AE191DDD144300281495 /* ViewController.swift */,
 				70A2AE1D1DDD3F4100281495 /* HomeViewController.swift */,
@@ -163,7 +164,6 @@
 				701E4FF41DDBCCE90090C0B0 /* Views */,
 				70CCDE731DDBB8DB006503F7 /* AppDelegate.swift */,
 				70CCDE771DDBB8DB006503F7 /* SecondViewController.swift */,
-				70CCDE791DDBB8DB006503F7 /* Main.storyboard */,
 				70CCDE7C1DDBB8DB006503F7 /* Assets.xcassets */,
 				70CCDE7E1DDBB8DB006503F7 /* LaunchScreen.storyboard */,
 				70CCDE811DDBB8DB006503F7 /* Info.plist */,
