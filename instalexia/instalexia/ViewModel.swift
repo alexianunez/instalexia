@@ -14,4 +14,20 @@ class ViewModel {
     
     let disposeBag = DisposeBag()
     
+    init() {
+        self.setupBindings()
+    }
+    
+    func setupBindings() {
+        
+    }
+    
+    func setPhotoLiked(photo: Photo) {
+        print(photo.text)
+    }
+    
+    func setPhotoUnliked(photo: Photo) {
+        print(photo.text)
+    }
+    
 }

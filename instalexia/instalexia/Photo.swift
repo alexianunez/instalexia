@@ -28,6 +28,7 @@ struct Photo {
     
     var photoId: Int = 0
     var likes: Int = 0
+    var liked: Bool = false
     var thumbnailUrl: String = ""
     var standardUrl: String = ""
     var lowResUrl: String = ""
@@ -56,12 +57,27 @@ struct Photo {
     
 }
 
+enum PhotosType {
+    case Recent
+    case Tag(searchTerm: String)
+    case Location(lat: String, long: String)
+}
+
 struct Photos {
     
     static var recentPhotos: Variable<[Photo]> = Variable([])
+    static var locationPhotos: Variable<[Photo]> = Variable([])
+    static var tagPhotos: Variable<[Photo]> = Variable([])
     
-    static func getRecentPhotos() {
-        API.getRecentPhotos()
+    static func getPhotos(type: PhotosType) {
+        switch type {
+        case .Recent:
+            API.getRecentPhotos()
+        case .Location(let lat, let long):
+            API.getLocationPhotos(lat: lat, long: long)
+        case .Tag(let searchTerm):
+            API.getTagPhotos(searchTerm: searchTerm)
+        }
     }
     
 }

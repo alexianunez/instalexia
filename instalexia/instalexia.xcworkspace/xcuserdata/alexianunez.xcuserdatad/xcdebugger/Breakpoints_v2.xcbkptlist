@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "instalexia/RecentPhotosViewController.swift"
-            timestampString = "502165154.44624"
+            filePath = "instalexia/API.swift"
+            timestampString = "502310493.52888"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "setPhotoLikeStatus(photo:)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "getTagPhotos(searchTerm:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "instalexia/API.swift"
+            timestampString = "502310494.655283"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "getLocationPhotos(lat:long:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

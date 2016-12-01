@@ -16,22 +16,17 @@ final class RecentPhotosViewModel: ViewModel {
     
     var recentPhotos: Variable<[Photo]> = Variable([])
     
-    override init() {
-        super.init()
-        setupBindings()
-        getRecentPhotos()
-    }
-    
-    private func setupBindings() {
-        Photos.recentPhotos
+    override func setupBindings() {
+        
+        recentPhotos
         .asObservable()
-        .subscribe {
-            guard let photos = $0.element else { return }
-            self.recentPhotos.value = photos
-        }.addDisposableTo(disposeBag)
+        .bindTo(Photos.recentPhotos)
+        .addDisposableTo(disposeBag)
+        
     }
     
     func getRecentPhotos() {
-        Photos.getRecentPhotos()
+        Photos.getPhotos(type: .Recent)
     }
+    
 }

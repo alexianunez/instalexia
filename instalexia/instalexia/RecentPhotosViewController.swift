@@ -7,20 +7,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import Kingfisher
 
-final class RecentPhotosViewController: ViewController, UICollectionViewDelegateFlowLayout {
+final class RecentPhotosViewController: PhotosCollectionViewController {
     
     let viewModel = RecentPhotosViewModel()
 
-    @IBOutlet weak var photosCollectionView: UICollectionView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBindings()
-        Photos.getRecentPhotos()
-    
-        // Do any additional setup after loading the view.
+        viewModel.getRecentPhotos()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +25,8 @@ final class RecentPhotosViewController: ViewController, UICollectionViewDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    private func setupBindings() {
+    override func setupBindings() {
+        super.setupBindings()
         
         viewModel.recentPhotos
         .asObservable()
@@ -41,28 +39,12 @@ final class RecentPhotosViewController: ViewController, UICollectionViewDelegate
             button.frame = cell.bounds
             cell.contentView.addSubview(button)
             button.rx.tap
+            .throttle(0.3, scheduler: MainScheduler.instance)
             .subscribe(onNext: {[unowned self] in
-                self.setPhotoLikeStatus(photo: photo)
+                self.viewModel.setPhotoLiked(photo: photo)
             }).addDisposableTo(self.disposeBag)
             
         }.addDisposableTo(disposeBag)
         
-    }
-    
-    func setPhotoLikeStatus(photo: Photo) {
-        print(photo.text)
-    }
-    
-    
-    //MARK: - Layout
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let numberOfColumns: CGFloat = 3
-        let itemWidth = (photosCollectionView.frame.width - (numberOfColumns - 1)) / numberOfColumns
-        return CGSize(width: itemWidth, height: itemWidth)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 0, 0, 0)
     }
 }

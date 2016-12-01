@@ -16,12 +16,7 @@ final class LoginViewModel: ViewModel {
     let accessToken: Variable<String> = Variable("")
     let userHasLoggedIn: Variable<Bool> = Variable(false)
     
-    override init() {
-        super.init()
-        setupBindings()
-    }
-    
-    private func setupBindings() {
+    override func setupBindings() {
         // Binding to set auth token on API if set
         accessToken.asObservable()
         .subscribe { event in

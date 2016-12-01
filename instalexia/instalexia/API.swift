@@ -29,9 +29,10 @@ enum APIConstants {
     enum Endpoints {
         case UserInfo
         case Recent
-        case Location(lat: Float, long: Float)
+        case Location(lat: String, long: String)
         case Tags(searchTerm: String)
         case Login
+        case Like(mediaId: Int)
         
         var fullURL: String {
             switch self {
@@ -42,9 +43,11 @@ enum APIConstants {
             case .Location(let lat, let long):
                 return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/media/search?lat=\(lat)&lng=\(long)"
             case .Tags(let searchTerm):
-                return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/users/self/media/recent/\(searchTerm)"
+                return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/tags/\(searchTerm)/media/recent"
             case .Login:
                 return "\(APIConstants.baseURL)/oauth/authorize/?client_id=\(APIConstants.clientID)&redirect_uri=\(APIConstants.callbackURL)&response_type=token"
+            case .Like(let mediaId):
+                return "\(APIConstants.baseURL)/\(APIConstants.apiVersion)/media/\(mediaId)/likes"
             }
         }
     }
@@ -86,7 +89,6 @@ final class API {
         .addDisposableTo(disposeBag)
     }
     
-    
     static func getRecentPhotos() {
         API.callAPI(endPoint: .Recent)
         .asObservable()
@@ -99,15 +101,38 @@ final class API {
         }.addDisposableTo(disposeBag)
     }
     
+    static func getTagPhotos(searchTerm: String) {
+        API.callAPI(endPoint: .Tags(searchTerm: searchTerm))
+            .asObservable()
+            .subscribe { event in
+                guard
+                    let jsonData = event.element as? [String: AnyObject],
+                    let photos = Parser.parsePhotos(jsonData: jsonData)
+                    else { return }
+                Photos.tagPhotos.value = photos
+            }.addDisposableTo(disposeBag)
+    }
+    
+    static func getLocationPhotos(lat: String, long: String) {
+        API.callAPI(endPoint: .Location(lat: lat, long: long))
+        .asObservable()
+        .subscribe { event in
+            guard
+                let jsonData = event.element as? [String: AnyObject],
+                let photos = Parser.parsePhotos(jsonData: jsonData)
+                else { return }
+            Photos.locationPhotos.value = photos
+        }.addDisposableTo(disposeBag)
+    }
+    
     static private func callAPI(endPoint: APIConstants.Endpoints) -> Observable<Any> {
+        let separator: String = endPoint.fullURL.contains("?") ? "&" : "?"
         guard
             let accessToken = API.authToken,
-            let url = URL(string: "\(endPoint.fullURL)?access_token=\(accessToken)")
+            let url = URL(string: "\(endPoint.fullURL)\(separator)access_token=\(accessToken)")
         else { return Observable.error(APIError.UnknownError) }
-        
         return URLSession.shared.rx.json(url: url)
         .observeOn(MainScheduler.instance)
     }
-    
     
 }

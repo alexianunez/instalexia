@@ -14,5 +14,9 @@ class PhotoCollectionViewCellModel: ViewModel {
     
     var photo: Variable<Photo>? = nil
     
+    override func setupBindings() {
+         
+    }
+    
     
 }
