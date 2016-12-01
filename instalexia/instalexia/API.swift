@@ -89,40 +89,25 @@ final class API {
         .addDisposableTo(disposeBag)
     }
     
-    static func getRecentPhotos() {
-        API.callAPI(endPoint: .Recent)
-        .asObservable()
-            .subscribe { event in
-                guard
-                    let jsonData = event.element as? [String: AnyObject],
-                    let photos = Parser.parsePhotos(jsonData: jsonData)
-                else { return }
-                Photos.recentPhotos.value = photos
-        }.addDisposableTo(disposeBag)
-    }
-    
-    static func getTagPhotos(searchTerm: String) {
-        API.callAPI(endPoint: .Tags(searchTerm: searchTerm))
-            .asObservable()
-            .subscribe { event in
-                guard
-                    let jsonData = event.element as? [String: AnyObject],
-                    let photos = Parser.parsePhotos(jsonData: jsonData)
-                    else { return }
-                Photos.tagPhotos.value = photos
-            }.addDisposableTo(disposeBag)
-    }
-    
-    static func getLocationPhotos(lat: String, long: String) {
-        API.callAPI(endPoint: .Location(lat: lat, long: long))
-        .asObservable()
-        .subscribe { event in
-            guard
-                let jsonData = event.element as? [String: AnyObject],
-                let photos = Parser.parsePhotos(jsonData: jsonData)
-                else { return }
-            Photos.locationPhotos.value = photos
-        }.addDisposableTo(disposeBag)
+    static func getPhotos(endpoint: APIConstants.Endpoints) -> Observable<[Photo]> {
+        return Observable.create({ (observer) -> Disposable in
+            API.callAPI(endPoint: endpoint)
+                .asObservable()
+                .subscribe(onNext: { (element) in
+                    guard
+                        let jsonData = element as? [String: AnyObject],
+                        let photos = Parser.parsePhotos(jsonData: jsonData)
+                        else { return }
+                    observer.onNext(photos)
+                }, onError: { (error) in
+                    observer.onError(error)
+                }, onCompleted: {
+                    observer.onCompleted()
+                }, onDisposed: {})
+                .addDisposableTo(disposeBag)
+            
+            return Disposables.create()
+        })
     }
     
     static private func callAPI(endPoint: APIConstants.Endpoints) -> Observable<Any> {

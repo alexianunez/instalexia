@@ -18,9 +18,9 @@ final class RecentPhotosViewModel: ViewModel {
     
     override func setupBindings() {
         
-        recentPhotos
+        Photos.recentPhotos
         .asObservable()
-        .bindTo(Photos.recentPhotos)
+        .bindTo(recentPhotos)
         .addDisposableTo(disposeBag)
         
     }

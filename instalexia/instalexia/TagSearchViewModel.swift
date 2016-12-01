@@ -16,9 +16,9 @@ class TagSearchViewModel: ViewModel {
 
     override func setupBindings() {
         
-        tagPhotos
+        Photos.tagPhotos
         .asObservable()
-        .bindTo(Photos.tagPhotos)
+        .bindTo(tagPhotos)
         .addDisposableTo(disposeBag)
         
     }

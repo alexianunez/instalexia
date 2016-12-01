@@ -65,6 +65,7 @@ enum PhotosType {
 
 struct Photos {
     
+    static let disposeBag = DisposeBag()
     static var recentPhotos: Variable<[Photo]> = Variable([])
     static var locationPhotos: Variable<[Photo]> = Variable([])
     static var tagPhotos: Variable<[Photo]> = Variable([])
@@ -72,12 +73,41 @@ struct Photos {
     static func getPhotos(type: PhotosType) {
         switch type {
         case .Recent:
-            API.getRecentPhotos()
+            getRecentPhotos()
         case .Location(let lat, let long):
-            API.getLocationPhotos(lat: lat, long: long)
+            getLocationPhotos(lat: lat, long: long)
         case .Tag(let searchTerm):
-            API.getTagPhotos(searchTerm: searchTerm)
+            getTagSearchPhotos(searchTerm: searchTerm)
         }
     }
     
+    private static func getRecentPhotos() {
+        API.getPhotos(endpoint: .Recent)
+        .subscribe(onNext: { (photos) in
+            self.recentPhotos.value = photos
+        }, onError: { (error) in
+            print(error)
+        }, onCompleted: nil, onDisposed: nil)
+        .addDisposableTo(disposeBag)
+    }
+    
+    private static func getLocationPhotos(lat: String, long: String) {
+        API.getPhotos(endpoint: .Location(lat: lat, long: long))
+        .subscribe(onNext: { (photos) in
+            self.locationPhotos.value = photos
+        }, onError: { (error) in
+            print(error)
+        }, onCompleted: nil, onDisposed: nil)
+        .addDisposableTo(disposeBag)
+    }
+    
+    private static func getTagSearchPhotos(searchTerm: String) {
+        API.getPhotos(endpoint: .Tags(searchTerm: searchTerm))
+        .subscribe(onNext: { (photos) in
+            self.locationPhotos.value = photos
+        }, onError: { (error) in
+            print(error)
+        }, onCompleted: nil, onDisposed: nil)
+        .addDisposableTo(disposeBag)
+    }
 }

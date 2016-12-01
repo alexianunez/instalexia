@@ -18,9 +18,9 @@ class LocationPhotosViewModel: ViewModel {
 
     override func setupBindings() {
         
-        locationPhotos
+        Photos.locationPhotos
         .asObservable()
-        .bindTo(Photos.locationPhotos)
+        .bindTo(locationPhotos)
         .addDisposableTo(disposeBag)
         
     }
