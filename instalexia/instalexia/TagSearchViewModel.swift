@@ -6,8 +6,24 @@
 //  Copyright © 2016 Alexia Nunez. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import RxCocoa
+import RxSwift
 
 class TagSearchViewModel: ViewModel {
+    
+    var tagPhotos: Variable<[Photo]> = Variable([])
 
+    override func setupBindings() {
+        
+        tagPhotos
+        .asObservable()
+        .bindTo(Photos.tagPhotos)
+        .addDisposableTo(disposeBag)
+        
+    }
+    
+    func getTagPhotos() {
+        Photos.getPhotos(type: .Tag(searchTerm: "christmas"))
+    }
 }
